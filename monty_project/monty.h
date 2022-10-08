@@ -1,7 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
-void push();
-void pall();
+void push(stack_t **stackvar, unsigned int line_number);
+void pall(stack_t **stackvar, unsigned int line_number);
+void swap(stack_t **stackvar, unsigned int line_number);
+void pop(stack_t **stackvar, unsigned int line_number);
+void nop(stack_t **stackvar, unsigned int line_number);
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
