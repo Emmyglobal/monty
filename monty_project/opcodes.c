@@ -31,24 +31,62 @@ void push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * pall - list the elements of the stack
- * @stack: double pointer
- * @line_number: the number line
- * Return: void
+* pop - removes the top element
+* @stack: double pointer
+* @line_number: the number line
+* Return: void
+*/
+void pop(stack_t **stack, unsigned int line_number)
+{
+	if(!stack)
+	{
+		printf("L<line_number>: can't pop an empty stack\n");
+		Cleaner();
+		exit(EXIT_FAILURE);
+	}
+	delete_dnodeint_at_index(stack,0);
+}
+/**
+* swap - swaps the elements
+* @stack: double pointer
+* @line_number: the number line
+* Return: void
+*/
+void swap(stack_t **stack, unsigned int line_number)
+{
+	if((!stack) || !(*stack)->next)
+	{
+		printf("L<line_number>: can't swap, stack too short\n");
+		Cleaner();
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = temp;
+}
+
+/**
+ * nop - returns nothing from stack
+ * @stack: doubly linked list
+ * @line_number: the line
+ * Return: Nothing.
  */
+
+void nop(stack_t **stack, unsigned int line_number)
+{
+ (void)stack;
+ (void)line_number;
+}
+
+/**
+ * pall - prints everything in stack
+ * @stack: doubly linked list
+ * @line_number: the line
+ * Return: Nothing.
+ */
+
 void pall(stack_t **stack, unsigned int line_number)
 {
-	int stack;
-
-	if (Top == -1)
-    {
-        print("The array is empty");
-    }
-    else
-    {
-        for (int i = Top; i >= 0; --i)
-        {
-            print("%d\n", stack[i]);
-        }
-    }
+ (void)line_number;
+ print_dlistint(*stack);
 }
