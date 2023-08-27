@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 		{
 			continue;
 		}
+		if (strcmp(opcode, "push") = 0)
 
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, opcode);
 		exit(EXIT_FAILURE);
