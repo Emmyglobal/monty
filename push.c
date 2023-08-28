@@ -1,51 +1,80 @@
 #include "monty.h"
-
+int is_integer(char *string);
 /**
- * push -> pushes an element into the stack
+ * _push_stack - pushes an element to top of stack
+ * @args: line arguments read from file
  */
-
-void push(stack_t **stack, int value)
+void _push_stack(char **args)
 {
-	int data;
+	stack_t *new;
 
-	if (top == SIZE - 1)
+	if (!args[1] || !is_integer(args[1]))
+		print_error(5, NULL);
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+		print_error(4, NULL);
+	new->n = atoi(args[1]);
+	new->next = NULL;
+	new->prev = NULL;
+	if (head)
 	{
-		printf("Stack overflow!\n");
-		exit(EXIT_FAILURE);
+		new->next = head;
+		head->prev = new;
+		head = new;
 	}
-	else
-	{
-		printf("Enter the value you want to push: \n");
-		scanf("%d", &data);
-		top++;
-		stack[top] = data;
-	}
+	head = new;
 }
-
 /**
- * link ->
+ * _push_queue - pushes an element to rear of queue
+ * @args: line arguments read from file
  */
-
-void link(stack_t **stack, int value)
+void _push_queue(char **args)
 {
-	stack_t *new_node = malloc(sizeof(stack_t));
+	stack_t *new, *tail = NULL;
 
-	if (new_node == NULL)
-	{
-		exit(EXIT_FAILURE);
-	}
-	new_node->n = value;
-	new_node->next = NULL;
+	/* check if arguments are valid */
+	if (!args[1] || !is_integer(args[1]))
+		print_error(5, NULL);
 
-	if (*stack == NULL)
+	/* allocate for new node */
+	new = malloc(sizeof(stack_t));
+	if (new == NULL)
+		print_error(4, NULL);
+
+	/* initialize new node */
+	new->n = atoi(args[1]);
+	new->next = NULL;
+	new->prev = NULL;
+
+	if (head)
 	{
-		new_node->prev = NULL;
-		*stack = new_node;
+		locate_tail(&tail); /* position tail pointer */
+		tail->next = new;
+		new->prev = tail;
 	}
 	else
+		head = new;
+}
+/**
+ * is_integer - determines if string is integer
+ * @string: string to check
+ *
+ * Return: 1 is integer, 0 if not
+ */
+int is_integer(char *string)
+{
+	int i = 0;
+
+	/* if first char is '-', accept and increment to next char */
+	if (string[0] == '-')
+		i++;
+
+	while (string[i] != '\0')
 	{
-		new_node->prev = *stack;
-		(*stack)->next = new_node;
-		*stack = new_node;
+		/* if char is not digit, return false */
+		if (isdigit(string[i]) == 0)
+			return (0);
+		i++;
 	}
+	return (1);
 }
