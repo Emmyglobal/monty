@@ -4,7 +4,7 @@
  * push -> pushes an element into the stack
  */
 
-void push()
+void push(stack_t **stack, int value)
 {
 	int data;
 

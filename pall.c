@@ -4,7 +4,7 @@
  * pall ->
  */
 
-void pall()
+void pall(stack_t **stack)
 {
 	if (top == -1)
 	{
@@ -32,6 +32,6 @@ void print(stack_t **stack)
 		while (current != NULL)
 		{
 			printf("%d\n", current->n);
-			current = current->prev
+			current = current->prev;
 		}
 }

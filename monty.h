@@ -39,7 +39,6 @@ typedef struct instruction_s
 extern int stack[SIZE];
 extern int top;
 
-void push();
-void pall();
-
+void push(stack_t **, int value);
+void pall(stack_t **stack);
 #endif
